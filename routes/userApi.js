@@ -11,7 +11,7 @@ router.post('/addUser', async (req,res,next)=>{
 
 // get users 
 router.get('/allUsers', async (req,res,next)=>{
-    const users = await User.find()
+    const users = await User.find().populate('todos').exec()
     res.json(users)
 })
 
@@ -47,4 +47,6 @@ router.delete('/deleteToDo/:userId/:todoId', async (req,res,next)=>{
     const updatedUser = await User.findById(user._id)
     res.json(updatedUser)
 })
+
+
 module.exports = router
