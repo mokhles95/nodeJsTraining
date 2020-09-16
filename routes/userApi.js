@@ -29,7 +29,8 @@ res.json(user)
 // update user 
 router.put('/update/:id', async (req,res,next)=>{
    await User.findByIdAndUpdate(req.params.id,req.body);
-   res.json(req.body)
+   const updatedUser = await User.findById(req.params.id)
+   res.json(updatedUser)
 })
 
 module.exports = router
