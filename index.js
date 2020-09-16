@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const hostname = '127.0.0.1';
 const port = 3000;
 const userRouter = require('./routes/userApi')
+const mongoose=require('./db/database');
 const app = express()
 
 
