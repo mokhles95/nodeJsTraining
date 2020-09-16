@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const hostname = '127.0.0.1';
 const port = 3000;
 const userRouter = require('./routes/userApi')
+const todoRouter = require('./routes/toDoApi')
 const mongoose=require('./db/database');
 const app = express()
 
@@ -29,7 +30,7 @@ app.get('/', (req,res,next)=>{
     res.send("hello")
 })
 app.use('/users',userRouter)
-
+app.use('/todo',todoRouter)
 
 
 app.listen(port, hostname, () => {
