@@ -1,0 +1,22 @@
+{
+  "name": "nodeproject",
+  "version": "1.0.0",
+  "description": "this a package for nodejs training",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mokhles95/nodeJsTraining.git"
+  },
+  "keywords": [
+    "JS"
+  ],
+  "author": "Mokhles",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mokhles95/nodeJsTraining/issues"
+  },
+  "homepage": "https://github.com/mokhles95/nodeJsTraining#readme"
+}
