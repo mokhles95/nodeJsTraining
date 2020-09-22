@@ -5,7 +5,7 @@ const hostname = '127.0.0.1';
 const port = 3000;
 const userRouter = require('./routes/userApi')
 const todoRouter = require('./routes/toDoApi')
-const nodeMailer = require('./routes/nodeMailer')
+
 const mongoose=require('./db/database');
 const app = express()
 
@@ -32,7 +32,6 @@ app.get('/', (req,res,next)=>{
 })
 app.use('/users',userRouter)
 app.use('/todo',todoRouter)
-app.use('/nodeMailer',nodeMailer)
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
