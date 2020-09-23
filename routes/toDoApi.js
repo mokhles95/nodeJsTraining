@@ -4,9 +4,9 @@ const ToDo = require('../models/todo')
 //add todo
 router.post('/addToDo', async (req,res,next)=>{
     const todo = new ToDo(req.body)
-   await todo.save()
+ await todo.save()
    res.json(todo)
-})
+})  
 
 // get todo list 
 router.get('/allTodo', async (req,res,next)=>{

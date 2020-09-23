@@ -1,8 +1,13 @@
 const nodemailer = require("nodemailer");
 const express=require('express')
 const User = require('../models/user')
+var fs = require("fs");
+var ejs = require("ejs");
 require('dotenv').config();
 const log = console.log;
+
+
+
 
 exports.sendEmail= (userId)=>{
   return async  (req,res)=>{
@@ -11,8 +16,8 @@ exports.sendEmail= (userId)=>{
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.EMAIL || 'mokhleshaj@gmail.com', // TODO: your gmail account
-        pass: process.env.PASSWORD || '07212360' // TODO: your gmail password
+        user: process.env.EMAIL || 'your email', // TODO: your gmail account
+        pass: process.env.PASSWORD || 'your password' // TODO: your gmail password
     }
   });
   // Step 2

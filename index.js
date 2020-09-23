@@ -5,16 +5,19 @@ const hostname = '127.0.0.1';
 const port = 3000;
 const userRouter = require('./routes/userApi')
 const todoRouter = require('./routes/toDoApi')
-
+const imageRouter = require('./routes/uploadImage')
 const mongoose=require('./db/database');
 const app = express()
 
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
  
 // parse application/json
 app.use(bodyParser.json())
+app.use('/uploads', express.static('uploads'));
  
 // app.use(function (req, res) {
 //   res.setHeader('Content-Type', 'text/plain')
@@ -32,6 +35,7 @@ app.get('/', (req,res,next)=>{
 })
 app.use('/users',userRouter)
 app.use('/todo',todoRouter)
+app.use('/image',imageRouter)
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);

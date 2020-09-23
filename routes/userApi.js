@@ -2,7 +2,9 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
 const ToDo = require('../models/todo')
-
+var fs = require("fs");
+var ejs = require("ejs");
+var path = require("path")
 const nodemailer = require("nodemailer");
 require('dotenv').config();
 //add user
@@ -61,8 +63,8 @@ router.post('/register/:id',async (req,res,next)=>{
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.EMAIL || 'mokhleshaj@gmail.com', // TODO: your gmail account
-            pass: process.env.PASSWORD || '07212360' // TODO: your gmail password
+            user: process.env.EMAIL || 'your email', // TODO: your gmail account
+            pass: process.env.PASSWORD || 'your password' // TODO: your gmail password
         }
       });
       // Step 2
@@ -89,8 +91,8 @@ router.post('/sednMailToAll',async (req,res,next)=>{
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.EMAIL || 'mokhleshaj@gmail.com', // TODO: your gmail account
-            pass: process.env.PASSWORD || '07212360' // TODO: your gmail password
+            user: process.env.EMAIL || 'your email', // TODO: your gmail account
+            pass: process.env.PASSWORD || 'your password' // TODO: your gmail password
         }
       });
       // Step 2
@@ -116,4 +118,29 @@ router.post('/sednMailToAll',async (req,res,next)=>{
 })
 
 
+
+router.post('/sendMailWithHtml',async (req,res,next)=>{
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL || 'your email', // TODO: your gmail account
+            pass: process.env.PASSWORD || 'your password' // TODO: your gmail password
+        }
+      });
+      const data = await ejs.renderFile(path.resolve("./views","test.html"), { name: 'Stranger' });
+      console.log(data);
+        let mainOptions = {
+            from: 'salmene.benromdhane@esprit.tn', // TODO: email sender
+            to: "mokhleshaj@gmail.com", // TODO: email receiver
+            subject: 'Nodemailer - Test',
+            html: data
+          };
+        transporter.sendMail(mainOptions, (err, data) => {
+            if (err) {
+                res.json(err);
+                console.log(err);
+            }
+            return res.json("Email sent!")
+          });
+})
 module.exports = router

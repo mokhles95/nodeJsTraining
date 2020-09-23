@@ -7,7 +7,8 @@ var userSchema = new Schema(
   lastName:    { type: String},
   email : {type:String},
   password:{type:String},
-  todos : [{type: Schema.Types.ObjectId, ref: 'ToDo'}]
+  todos : [{type: Schema.Types.ObjectId, ref: 'ToDo'}],
+  image : { type: String }
  });
 
 module.exports =  mongoose.model('user', userSchema); 
